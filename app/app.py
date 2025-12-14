@@ -31,7 +31,8 @@ logging.basicConfig(
 )
 load_dotenv()
 TOKEN = os.getenv("TG_TOKEN")
-BOT_ID = int(os.getenv("BOT_ID"))
+BOT_ID_: str | None = os.getenv("BOT_ID")
+BOT_ID = int(BOT_ID_) if BOT_ID_ else None
 PROXY = os.getenv("PROXY")
 
 # Инициализация вашей системы
@@ -67,10 +68,10 @@ dp = Dispatcher(bot)
 client = AsyncOpenAI(http_client=http_client)
 
 # Создаем асинхронную очередь
-message_queue = asyncio.Queue()
+message_queue: asyncio.Queue[tuple[int, str]] = asyncio.Queue()
 
 
-async def message_worker():
+async def message_worker() -> None:
     """
     Message queue handler
     """
@@ -85,14 +86,14 @@ async def message_worker():
         await asyncio.sleep(6)
 
 
-async def on_startup(dispatcher):
+async def on_startup(dispatcher: Dispatcher) -> None:
     """
     Run the task in the context of the current event cycle
     """
     asyncio.create_task(message_worker())
 
 
-async def keep_typing(chat_id, interval=5):
+async def keep_typing(chat_id: int, interval: int = 5) -> None:
     """
     Function to keep the "print" effect.
     """
@@ -101,7 +102,7 @@ async def keep_typing(chat_id, interval=5):
         await asyncio.sleep(interval)
 
 
-async def answer(user_message: str, reply_to_message=None):
+async def answer(user_message: str, reply_to_message: str | None = None) -> str:
     """
     Common function for getting answer from GPT
     """
@@ -113,11 +114,11 @@ async def answer(user_message: str, reply_to_message=None):
         message = f"{reply_to_message}\n\n<b>Вопрос:</b><i>{escape_html(user_message)}<i> \n\n" f"<b>Ответ:</b>"
         retrival_query = retrival_query_regex.findall(reply_to_message)[0] + escape_html(user_message)
         retrival = await query_engine.aquery(retrival_query)
-        urls_cybertolya = await predict_with_trained_model(retrival_query, bm25_desc, bm25_title, links)
+        urls_cybertolya_ = await predict_with_trained_model(retrival_query, bm25_desc, bm25_title, links)
     else:
         message = user_message
         retrival = await query_engine.aquery(message)
-        urls_cybertolya = await predict_with_trained_model(message, bm25_desc, bm25_title, links)
+        urls_cybertolya_ = await predict_with_trained_model(message, bm25_desc, bm25_title, links)
     information = [(i.text, i.metadata["url"], i.metadata["title"]) for i in retrival.source_nodes]
 
     for idx, text in enumerate([text for text, _, _ in information], 1):
@@ -125,7 +126,7 @@ async def answer(user_message: str, reply_to_message=None):
 
     information_text = escape_html(" ".join([text for text, _, _ in information]))
     urls_rag_youtube_itmo = set(f'&#x25CF; <a href="{url}">{escape_html(title)}</a>' for _, url, title in information)
-    urls_cybertolya = set(f'&#x25CF; <a href="{url}">{escape_html(title)}</a>' for url, title in urls_cybertolya)
+    urls_cybertolya = set(f'&#x25CF; <a href="{url}">{escape_html(title)}</a>' for url, title in urls_cybertolya_)
     logging.info("Urls of rag youtube itmo: %s\nUrls of CyberTolya: %s", urls_rag_youtube_itmo, urls_cybertolya)
 
     information_url = "\n".join(urls_rag_youtube_itmo | urls_cybertolya)
@@ -189,7 +190,7 @@ async def answer(user_message: str, reply_to_message=None):
 
 
 @dp.message_handler(commands=["start", "help"])
-async def send_welcome(message: types.Message):
+async def send_welcome(message: types.Message) -> None:
     """
     Sends a welcome message
     """
@@ -203,7 +204,7 @@ async def send_welcome(message: types.Message):
 
 
 @dp.message_handler(lambda message: "@rag_youtube_itmo_bot" in message.text)
-async def handle_tag(message: types.Message):
+async def handle_tag(message: types.Message) -> None:
     """
     rag youtube itmo bot tag function
     """
@@ -221,12 +222,12 @@ async def handle_tag(message: types.Message):
 
 
 @dp.message_handler(lambda message: message.reply_to_message and message.reply_to_message.from_user.id == BOT_ID)
-async def handle_reply(message: types.Message):
+async def handle_reply(message: types.Message) -> None:
     """
     rag youtube itmo bot reply function
     """
     logging.info("The message is accepted: %s", message.text)
-    typing_task = asyncio.create_task(keep_typing(message.chat.id))
+    typing_task: asyncio.Task[None] = asyncio.create_task(keep_typing(message.chat.id))
     try:
         original_message = message.reply_to_message.text
         user_reply = message.text

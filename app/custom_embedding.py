@@ -50,7 +50,7 @@ class OpenAIEmbeddingProxy(OpenAIEmbedding):
             **kwargs,
         )
 
-    def _get_credential_kwargs(self) -> Dict[str, Any]:
-        credential_kwargs = super()._get_credential_kwargs()
+    def _get_credential_kwargs(self) -> dict[str, Any]:
+        credential_kwargs: dict[str, Any] = super()._get_credential_kwargs()
         credential_kwargs["http_client"] = self._http_client
         return credential_kwargs

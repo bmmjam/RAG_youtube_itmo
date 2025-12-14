@@ -1,6 +1,5 @@
 from string import punctuation
 from typing import Any
-from typing import List
 
 import nltk
 import numpy as np
@@ -13,12 +12,12 @@ mystem = Mystem()
 rus_stopwords = stopwords.words('russian')
 
 
-async def preprocess_text(text: str) -> List:
+async def preprocess_text(text: str) -> list[str]:
     """Tokenizes text"""
-    tokens = mystem.lemmatize(text.lower())
-    tokens = [
+    tokens_ = mystem.lemmatize(text.lower())
+    tokens: list[str] = [
         token
-        for token in tokens
+        for token in tokens_
         if token not in rus_stopwords
         and token != " "
         and token.strip() not in punctuation
@@ -47,15 +46,15 @@ async def predict_with_trained_model(
 
     Returns
     -------
-    List[Tuple[str, str]]
+    list[tuple[str, str]]
       List with tuples containing link and title
     """
-    message = await preprocess_text(message)
+    message_: list[str] = await preprocess_text(message)
 
     scores_desc = bm25_desc.get_scores(message)
     index_desc = list(map(str, np.argsort(scores_desc)[-3:]))
 
-    scores_title = bm25_title.get_scores(message)
+    scores_title = bm25_title.get_scores(message_)
     index_title = list(map(str, np.argsort(scores_title)[-3:]))
 
     index = index_desc + index_title
