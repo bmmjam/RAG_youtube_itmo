@@ -1,5 +1,7 @@
 import json
+
 from pytube import YouTube
+
 
 with open('dataset/sources.txt', 'r') as f:
     urls = [line.strip() for line in f if line.strip()]
@@ -12,7 +14,7 @@ for url in urls:
         'title': yt.title,
         'description': yt.description,
         'length': yt.length,  # в секундах
-        'publish_date': str(yt.publish_date)  # преобразуем в строку
+        'publish_date': str(yt.publish_date),  # преобразуем в строку
     }
     video_info.append(info)
 

@@ -1,0 +1,244 @@
+import asyncio
+import json
+import logging
+import os
+import pickle
+import re
+from logging.handlers import RotatingFileHandler
+
+import httpx
+import openai
+from aiogram import Bot
+from aiogram import Dispatcher
+from aiogram import executor
+from aiogram import types
+from custom_embedding import OpenAIEmbeddingProxy
+from dotenv import load_dotenv
+from llama_index import ServiceContext
+from llama_index import StorageContext
+from llama_index import load_index_from_storage
+from openai import AsyncOpenAI
+from utils import predict_with_trained_model
+
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(module)s: %(message)s",
+    handlers=[
+        RotatingFileHandler("logs/app.log", maxBytes=5000000, backupCount=2),
+        logging.StreamHandler(),
+    ],
+)
+load_dotenv()
+TOKEN = os.getenv("TG_TOKEN")
+BOT_ID_: str | None = os.getenv("BOT_ID")
+BOT_ID = int(BOT_ID_) if BOT_ID_ else None
+PROXY = os.getenv("PROXY")
+
+# Инициализация вашей системы
+logging.info("Initialization has started")
+http_client = httpx.AsyncClient(proxies=PROXY)
+embed_model = OpenAIEmbeddingProxy(http_client=http_client)
+service_context = ServiceContext.from_defaults(embed_model=embed_model)
+storage_cntxt = StorageContext.from_defaults(persist_dir="../data/index_storage_1024")
+index = load_index_from_storage(
+    storage_cntxt,
+    service_context=service_context,
+)
+query_engine = index.as_query_engine(
+    include_text=True,
+    response_mode="no_text",
+    embedding_mode="hybrid",
+    similarity_top_k=3,
+)
+
+retrival_query_regex = re.compile(r"Вопрос: (.*?) \n\n", re.DOTALL)
+message_regex = re.compile(r'@rag_youtube_itmo_bot[,\s]*')
+
+with open("../data/bm25_result_desc.pkl", 'rb') as bm25result_file:
+    bm25_desc = pickle.load(bm25result_file)
+with open("../data/bm25_result_title.pkl", 'rb') as bm25result_file:
+    bm25_title = pickle.load(bm25result_file)
+with open("../data/links.json", "r", encoding="utf-8") as read_file:
+    links = json.load(read_file)
+
+logging.info("Initialization is complete")
+bot = Bot(token=TOKEN)
+dp = Dispatcher(bot)
+client = AsyncOpenAI(http_client=http_client)
+
+# Создаем асинхронную очередь
+message_queue: asyncio.Queue[tuple[int, str]] = asyncio.Queue()
+
+
+async def message_worker() -> None:
+    """
+    Message queue handler
+    """
+    while True:
+        # Получаем задачу из очереди
+        chat_id, text = await message_queue.get()
+
+        # Отправляем сообщение
+        await bot.send_message(chat_id, text, parse_mode="HTML")
+
+        # Ждем 6 секунд перед обработкой следующей задачи
+        await asyncio.sleep(6)
+
+
+async def on_startup(dispatcher: Dispatcher) -> None:
+    """
+    Run the task in the context of the current event cycle
+    """
+    asyncio.create_task(message_worker())
+
+
+async def keep_typing(chat_id: int, interval: int = 5) -> None:
+    """
+    Function to keep the "print" effect.
+    """
+    while True:
+        await bot.send_chat_action(chat_id, 'typing')
+        await asyncio.sleep(interval)
+
+
+async def answer(user_message: str, reply_to_message: str | None = None) -> str:
+    """
+    Common function for getting answer from GPT
+    """
+
+    def escape_html(text: str) -> str:
+        return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
+
+    if reply_to_message is not None:
+        message = f"{reply_to_message}\n\n<b>Вопрос:</b><i>{escape_html(user_message)}<i> \n\n" f"<b>Ответ:</b>"
+        retrival_query = retrival_query_regex.findall(reply_to_message)[0] + escape_html(user_message)
+        retrival = await query_engine.aquery(retrival_query)
+        urls_cybertolya_ = await predict_with_trained_model(retrival_query, bm25_desc, bm25_title, links)
+    else:
+        message = user_message
+        retrival = await query_engine.aquery(message)
+        urls_cybertolya_ = await predict_with_trained_model(message, bm25_desc, bm25_title, links)
+    information = [(i.text, i.metadata["url"], i.metadata["title"]) for i in retrival.source_nodes]
+
+    for idx, text in enumerate([text for text, _, _ in information], 1):
+        logging.info("%s node: %s", idx, text)
+
+    information_text = escape_html(" ".join([text for text, _, _ in information]))
+    urls_rag_youtube_itmo = set(f'&#x25CF; <a href="{url}">{escape_html(title)}</a>' for _, url, title in information)
+    urls_cybertolya = set(f'&#x25CF; <a href="{url}">{escape_html(title)}</a>' for url, title in urls_cybertolya_)
+    logging.info("Urls of rag youtube itmo: %s\nUrls of CyberTolya: %s", urls_rag_youtube_itmo, urls_cybertolya)
+
+    information_url = "\n".join(urls_rag_youtube_itmo | urls_cybertolya)
+
+    context_prompt = (
+        "Ниже мы предоставили контекстную информацию\n"
+        "---------------------\n"
+        f"{information_text}"
+        "\n---------------------\n"
+        f"Учитывая эту информацию, ответьте, пожалуйста, на вопрос: {message}\n"
+        "\n---------------------\n"
+        "Ответ на вопрос должен быть развернутым, полным, и охватывать множество "
+        "аспектов заданного вопроса"
+        "Внимание! В ответе нельзя упоминать конекстную информацию! "
+        "Пользователь не знает о ее наличии!"
+    )
+
+    model_name = "gpt-3.5-turbo-1106"
+
+    evaluate_promt = (
+        "Ниже представлена контекстная информация:\n"
+        "---------------------\n"
+        f"{information_text}"
+        "\n---------------------\n"
+        f"Также представлен некий вопрос: {message}\n"
+        "\n---------------------\n"
+        "Присутствуют ли в контекстной информации в точности конкретные термины, понятия, "
+        "определения, имена из вопроса? Если да, ответь YES, если нет - NO"
+    )
+    evaluate_response = await client.chat.completions.create(
+        model=model_name, temperature=0, messages=[{"role": "user", "content": evaluate_promt}]
+    )
+    logging.info("Context is valid: %s", evaluate_response.choices[0].message.content)
+
+    dont_match_start_phrase = (
+        "К сожалению, я не могу ответить на этот вопрос, "
+        "основываясь на роликах с YouTube-канала, "
+        "но могу сам ответить на него.\n"
+    )
+
+    if evaluate_response.choices[0].message.content.strip() == "YES":
+        gpt_response = await client.chat.completions.create(
+            model=model_name, temperature=0, messages=[{"role": "user", "content": context_prompt}]
+        )
+        main_response = gpt_response.choices[0].message.content
+        extended_answer = f"<b>Подробнее здесь:</b> \n\n{information_url}"
+    else:
+        gpt_response = await client.chat.completions.create(
+            model=model_name, temperature=0, messages=[{"role": "user", "content": message}]
+        )
+        main_response = dont_match_start_phrase + gpt_response.choices[0].message.content
+        extended_answer = ""
+
+    logging.info("Finally answer: %s", main_response)
+
+    template_answer = (
+        f"<b>Вопрос:</b> <i>{escape_html(user_message)}</i> \n\n"
+        f"<b>Ответ:</b> {main_response} \n\n" + extended_answer
+    )
+    return template_answer
+
+
+@dp.message_handler(commands=["start", "help"])
+async def send_welcome(message: types.Message) -> None:
+    """
+    Sends a welcome message
+    """
+    greeting = (
+        "Привет, я бот rag youtube itmo!\n"
+        "Я являюсь QA-системой на основе контента YouTube-канала.\n"
+        "Для того, чтобы я ответил на твой вопрос, тегни меня: @rag_youtube_itmo_bot\n"
+        "Бот создан студентами <a href='https://ai.itmo.ru'>AI Talent Hub</a>"
+    )
+    await message_queue.put((message.chat.id, greeting))
+
+
+@dp.message_handler(lambda message: "@rag_youtube_itmo_bot" in message.text)
+async def handle_tag(message: types.Message) -> None:
+    """
+    rag youtube itmo bot tag function
+    """
+    logging.info("The message is accepted: %s", message.text)
+    typing_task = asyncio.create_task(keep_typing(message.chat.id))
+    try:
+        user_message = message_regex.sub('', message.text)
+        try:
+            template_answer = await answer(user_message)
+        except openai.APITimeoutError:
+            template_answer = "Сервис пока не доступен. Попробуйте обратиться позже"
+    finally:
+        typing_task.cancel()
+    await message_queue.put((message.chat.id, template_answer))
+
+
+@dp.message_handler(lambda message: message.reply_to_message and message.reply_to_message.from_user.id == BOT_ID)
+async def handle_reply(message: types.Message) -> None:
+    """
+    rag youtube itmo bot reply function
+    """
+    logging.info("The message is accepted: %s", message.text)
+    typing_task: asyncio.Task[None] = asyncio.create_task(keep_typing(message.chat.id))
+    try:
+        original_message = message.reply_to_message.text
+        user_reply = message.text
+        try:
+            template_answer = await answer(user_reply, reply_to_message=original_message)
+        except openai.APITimeoutError:
+            template_answer = "Сервис пока не доступен. Попробуйте обратиться позже"
+    finally:
+        typing_task.cancel()
+    await message_queue.put((message.chat.id, template_answer))
+
+
+if __name__ == "__main__":
+    executor.start_polling(dp, skip_updates=True, on_startup=on_startup)
