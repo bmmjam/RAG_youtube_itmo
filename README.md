@@ -1,5 +1,13 @@
 # RAG_youtube_itmo
 
+- Создать и активировать виртуальное окружение
+  ```shell
+  deactivate
+  rm -rf .venv || true
+  python3.11 -m venv .venv
+  source .venv/bin/activate
+  ```
+
 добавление новых зависимостей
 `poetry add numpy`
 

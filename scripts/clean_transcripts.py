@@ -1,6 +1,6 @@
-import re
 import json
 import os
+import re
 
 def clean_text(text):
     # English filler words and hesitations
@@ -18,7 +18,7 @@ def clean_text(text):
     
     # Remove extra whitespace
     text = ' '.join(text.split())
-    
+
     return text
 
 def clean_transcript_files():
@@ -51,6 +51,17 @@ def clean_transcript_files():
                 print(f"✗ Error processing {file}: {str(e)}")
     
     print(f"\nCleaning completed! Processed {processed_count} files.")
+
+for file in os.listdir('dataset/raw/'):
+    if file.endswith('_transcript.json'):
+        with open(f'dataset/raw/{file}', 'r', encoding='utf-8') as f:
+            transcript = json.load(f)
+
+        for segment in transcript:
+            segment['text'] = clean_text(segment['text'])
+
+        with open(f'dataset/raw/{file}', 'w', encoding='utf-8') as f:
+            json.dump(transcript, f, ensure_ascii=False, indent=4)
 
 if __name__ == "__main__":
     clean_transcript_files()
