@@ -25,7 +25,7 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(module)s: %(message)s",
     handlers=[
-        RotatingFileHandler("logs/app.log", maxBytes=5000000, backupCount=2),
+        RotatingFileHandler("app/logs/app.log", maxBytes=5000000, backupCount=2),
         logging.StreamHandler(),
     ],
 )
@@ -40,7 +40,7 @@ logging.info("Initialization has started")
 http_client = httpx.AsyncClient(proxies=PROXY)
 embed_model = OpenAIEmbeddingProxy(http_client=http_client)
 service_context = ServiceContext.from_defaults(embed_model=embed_model)
-storage_cntxt = StorageContext.from_defaults(persist_dir="../data/index_storage_1024")
+storage_cntxt = StorageContext.from_defaults(persist_dir="data/index_storage_1024")
 index = load_index_from_storage(
     storage_cntxt,
     service_context=service_context,
@@ -55,11 +55,11 @@ query_engine = index.as_query_engine(
 retrival_query_regex = re.compile(r"Вопрос: (.*?) \n\n", re.DOTALL)
 message_regex = re.compile(r'@rag_youtube_itmo_bot[,\s]*')
 
-with open("../data/bm25_result_desc.pkl", 'rb') as bm25result_file:
+with open("data/bm25_result_desc.pkl", 'rb') as bm25result_file:
     bm25_desc = pickle.load(bm25result_file)
-with open("../data/bm25_result_title.pkl", 'rb') as bm25result_file:
+with open("data/bm25_result_title.pkl", 'rb') as bm25result_file:
     bm25_title = pickle.load(bm25result_file)
-with open("../data/links.json", "r", encoding="utf-8") as read_file:
+with open("data/links.json", "r", encoding="utf-8") as read_file:
     links = json.load(read_file)
 
 logging.info("Initialization is complete")

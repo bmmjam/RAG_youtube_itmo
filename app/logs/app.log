@@ -1,0 +1,53 @@
+2025-11-30 23:40:52,521 [INFO] app: Initialization has started
+2025-11-30 23:41:53,110 [INFO] app: Initialization has started
+2025-11-30 23:42:41,496 [INFO] app: Initialization has started
+2025-11-30 23:45:07,483 [INFO] app: Initialization has started
+2025-11-30 23:45:39,304 [INFO] app: Initialization has started
+2025-11-30 23:52:10,471 [INFO] app: Initialization has started
+2025-11-30 23:53:32,445 [INFO] app: Initialization has started
+2025-11-30 23:53:33,695 [INFO] loading: Loading all indices.
+2025-11-30 23:53:47,979 [INFO] app: Initialization has started
+2025-11-30 23:53:49,281 [INFO] loading: Loading all indices.
+2025-11-30 23:53:55,915 [INFO] app: Initialization has started
+2025-11-30 23:53:57,168 [INFO] loading: Loading all indices.
+2025-11-30 23:53:57,191 [INFO] app: Initialization is complete
+2025-11-30 23:54:00,402 [INFO] executor: Bot: Отзывы на пары [@itmo_feedback_bot]
+2025-11-30 23:54:01,538 [WARNING] executor: Updates were skipped successfully.
+2025-11-30 23:54:01,538 [INFO] dispatcher: Start polling.
+2025-11-30 23:55:25,579 [INFO] app: The message is accepted: @karpovAI_bot как писать rag
+2025-11-30 23:55:26,569 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 429 Too Many Requests"
+2025-11-30 23:55:26,571 [INFO] _base_client: Retrying request to /embeddings in 0.975939 seconds
+2025-11-30 23:55:28,281 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 429 Too Many Requests"
+2025-11-30 23:55:28,283 [INFO] _base_client: Retrying request to /embeddings in 1.753984 seconds
+2025-11-30 23:55:30,774 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 429 Too Many Requests"
+2025-11-30 23:55:30,775 [INFO] _base_client: Retrying request to /embeddings in 3.963862 seconds
+2025-11-30 23:55:35,569 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 429 Too Many Requests"
+2025-11-30 23:55:35,571 [INFO] _base_client: Retrying request to /embeddings in 7.525348 seconds
+2025-11-30 23:55:43,516 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 429 Too Many Requests"
+2025-11-30 23:55:43,518 [INFO] _base_client: Retrying request to /embeddings in 6.766974 seconds
+2025-11-30 23:55:50,628 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 429 Too Many Requests"
+2025-11-30 23:55:50,629 [INFO] _base_client: Retrying request to /embeddings in 6.528889 seconds
+2025-11-30 23:55:57,512 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 429 Too Many Requests"
+2025-11-30 23:55:57,513 [INFO] _base_client: Retrying request to /embeddings in 6.070631 seconds
+2025-11-30 23:56:03,880 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 429 Too Many Requests"
+2025-11-30 23:56:03,881 [INFO] _base_client: Retrying request to /embeddings in 7.166480 seconds
+2025-11-30 23:56:10,177 [INFO] dispatcher: Stop polling...
+2025-11-30 23:56:10,178 [WARNING] executor: Goodbye!
+2025-12-20 01:43:21,721 [INFO] app: Initialization has started
+2025-12-20 01:44:46,945 [INFO] app: Initialization has started
+2025-12-20 01:46:00,033 [INFO] app: Initialization has started
+2025-12-20 01:46:20,896 [INFO] app: Initialization has started
+2025-12-20 01:47:53,302 [INFO] app: Initialization has started
+2025-12-20 01:48:00,437 [INFO] app: Initialization has started
+2025-12-20 01:48:01,781 [INFO] loading: Loading all indices.
+2025-12-20 01:48:34,403 [INFO] app: Initialization has started
+2025-12-20 01:48:35,735 [INFO] loading: Loading all indices.
+2025-12-20 01:48:35,814 [INFO] app: Initialization is complete
+2025-12-20 01:49:18,744 [INFO] app: Initialization has started
+2025-12-20 01:49:19,986 [INFO] loading: Loading all indices.
+2025-12-20 01:49:20,067 [INFO] app: Initialization is complete
+2025-12-20 01:49:20,385 [INFO] executor: Bot: Отзывы на пары [@itmo_feedback_bot]
+2025-12-20 01:49:21,515 [WARNING] executor: Updates were skipped successfully.
+2025-12-20 01:49:21,515 [INFO] dispatcher: Start polling.
+2025-12-20 01:50:13,078 [INFO] dispatcher: Stop polling...
+2025-12-20 01:50:13,079 [WARNING] executor: Goodbye!
