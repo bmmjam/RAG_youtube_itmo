@@ -50,9 +50,6 @@ ehthumbs.db
 Thumbs.db
 
 # Project specific
-# Data files (generated/indexed data)
-*.pkl
-*.pickle
 
 # Logs
 
