@@ -118,7 +118,8 @@ async def llm_context_judge(context: str, question: str) -> bool:
         temperature=0,
         messages=[{"role": "user", "content": prompt}],
     )
-    return resp.choices[0].message.content.strip() == "YES"
+    positive: bool = resp.choices[0].message.content.strip() == "YES"
+    return positive
 
 
 async def answer(user_message: str, reply_to_message: str | None = None) -> str:
