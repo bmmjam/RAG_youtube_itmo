@@ -1,29 +1,37 @@
-import os
 import json
 import logging
-from logging.handlers import RotatingFileHandler
+import os
 from dataclasses import dataclass
+from logging.handlers import RotatingFileHandler
 from typing import List
+
 import httpx
 from dotenv import load_dotenv
 from llama_index import Document
+from llama_index import ServiceContext
+from llama_index import StorageContext
+from llama_index import VectorStoreIndex
+from llama_index import load_index_from_storage
 from llama_index.node_parser import SimpleNodeParser
-from llama_index import StorageContext, load_index_from_storage
-from llama_index import VectorStoreIndex, ServiceContext
-from data_pipelines.parser_transcribe import ParserTranscribe
+
 from app.custom_embedding import OpenAIEmbeddingProxy
+from data_pipelines.parser_transcribe import ParserTranscribe
+
 
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(module)s: %(message)s",
     handlers=[
-        RotatingFileHandler(os.path.join(os.path.dirname(__file__), "../app/logs/app.log"), maxBytes=5000000, backupCount=2),
-        logging.StreamHandler()
-    ]
+        RotatingFileHandler(
+            os.path.join(os.path.dirname(__file__), "../app/logs/app.log"), maxBytes=5000000, backupCount=2
+        ),
+        logging.StreamHandler(),
+    ],
 )
 load_dotenv()
 PROXY = os.getenv("PROXY")
 http_client = httpx.Client(proxies=PROXY)
+
 
 @dataclass()
 class IndexPipeline:
@@ -31,6 +39,7 @@ class IndexPipeline:
     Запускает пайплайн получения индекса -
     от определения новых видео в YouTube до сохранения индекса.
     """
+
     path_to_save: str
     url_file_path: str
     json_video_info_path: str
@@ -86,12 +95,8 @@ class IndexPipeline:
         3. Сохраняет индекс
         """
         embed_model = OpenAIEmbeddingProxy(http_client=http_client)
-        node_parser = SimpleNodeParser.from_defaults(
-            chunk_size=self.chunk_size,
-            chunk_overlap=self.chunk_overlap
-        )
-        service_context = ServiceContext.from_defaults(node_parser=node_parser,
-                                                       embed_model=embed_model)
+        node_parser = SimpleNodeParser.from_defaults(chunk_size=self.chunk_size, chunk_overlap=self.chunk_overlap)
+        service_context = ServiceContext.from_defaults(node_parser=node_parser, embed_model=embed_model)
         # Загружаем индекс
         index_store_path = os.path.join(self.index_folder, "index_store.json")
         if os.path.exists(index_store_path):
@@ -128,8 +133,7 @@ class IndexPipeline:
         # Сохраняем индекс
         index.storage_context.persist(self.index_folder)
 
-
-    def run(self, channel_url: str, test: bool=False) -> None:
+    def run(self, channel_url: str, test: bool = False) -> None:
         """Запускает пайплайн получения индекса"""
         new_videos = self._get_download_urls(channel_url)
         if new_videos:
@@ -141,14 +145,14 @@ class IndexPipeline:
             # print("No new videos to download")
             logging.info("No new videos to download")
 
+
 if __name__ == "__main__":
     pipe = IndexPipeline(
         path_to_save="data/audio",
         url_file_path="data/my_videos.txt",
         json_video_info_path="data/video_info.json",
         index_folder="data/index_storage_1024",
-        chunk_size=768
+        chunk_size=768,
     )
 
     pipe.run(channel_url=None)
-

@@ -1,29 +1,33 @@
-import os
 import json
 import logging
-from logging.handlers import RotatingFileHandler
+import os
 import subprocess
 import time
 from dataclasses import dataclass
-from typing import List
+from logging.handlers import RotatingFileHandler
+
 import httpx
-from dotenv import load_dotenv
 import openai
-from openai import OpenAI
 import yt_dlp
+from dotenv import load_dotenv
+from openai import OpenAI
+
 
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(module)s: %(message)s",
     handlers=[
-        RotatingFileHandler(os.path.join(os.path.dirname(__file__), "../app/logs/app.log"), maxBytes=5000000, backupCount=2),
-        logging.StreamHandler()
-    ]
+        RotatingFileHandler(
+            os.path.join(os.path.dirname(__file__), "../app/logs/app.log"), maxBytes=5000000, backupCount=2
+        ),
+        logging.StreamHandler(),
+    ],
 )
 load_dotenv()
 PROXY = os.getenv("PROXY")
 http_client = httpx.Client(proxies=PROXY)
 client = OpenAI(http_client=http_client)
+
 
 @dataclass()
 class ParserTranscribe:
@@ -34,23 +38,25 @@ class ParserTranscribe:
     and saves data to a json file
     - get_video_urls(channel_url: str) - get list of all video urls from youtube-channel
     """
-    path_to_save: str # Путь к папке с аудио
-    json_video_info_path: str # Путь к json-файлу
-    segment_time: int = 900 # Длительность сегмента при нарезке аудио
+
+    path_to_save: str  # Путь к папке с аудио
+    json_video_info_path: str  # Путь к json-файлу
+    segment_time: int = 900  # Длительность сегмента при нарезке аудио
     max_attempts: int = 5  # максимальное количество попыток
     delay: int = 10  # задержка между попытками в секундах
-
 
     def _get_video_info(self, video_url: str) -> dict:
         ydl_opts = {
             "format": "bestaudio/best",
             "outtmpl": os.path.join(self.path_to_save, "%(id)s.%(ext)s"),
             "quiet": True,
-            "postprocessors": [{
-                "key": "FFmpegExtractAudio",
-                "preferredcodec": "mp3",
-                "preferredquality": "192",
-            }],
+            "postprocessors": [
+                {
+                    "key": "FFmpegExtractAudio",
+                    "preferredcodec": "mp3",
+                    "preferredquality": "192",
+                }
+            ],
         }
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -64,7 +70,6 @@ class ParserTranscribe:
             "description": info.get("description"),
             "audio_path": audio_path,
         }
-
 
     def _download_channel_audio_track(self, url_of_video: str) -> str:
         """
@@ -156,10 +161,7 @@ class ParserTranscribe:
             try:
                 with open(audio_path, "rb") as audio_file:
                     transcript = client.audio.transcriptions.create(
-                        file=audio_file,
-                        model="whisper-1",
-                        response_format="text",
-                        language=["ru"]
+                        file=audio_file, model="whisper-1", response_format="text", language=["ru"]
                     )
                 return transcript
             except openai.APITimeoutError as e:
@@ -172,7 +174,6 @@ class ParserTranscribe:
                     raise  # повторно вызываем исключение, чтобы сообщить о проблеме
         return None
 
-
     def _get_transcribe(self, audio_path: str):
         file_name = os.path.basename(audio_path)
 
@@ -180,17 +181,12 @@ class ParserTranscribe:
             logging.warning("Unsupported audio format: %s", file_name)
             return
 
-        output_pattern = os.path.join(
-            self.path_to_save, f"{file_name[:-4]}_segment%03d.mp3"
-        )
+        output_pattern = os.path.join(self.path_to_save, f"{file_name[:-4]}_segment%03d.mp3")
 
         self._split_audio(audio_path, output_pattern)
 
         transcriptions = []
-        segment_files = sorted(
-            f for f in os.listdir(self.path_to_save)
-            if f.startswith(file_name[:-4] + "_segment")
-        )
+        segment_files = sorted(f for f in os.listdir(self.path_to_save) if f.startswith(file_name[:-4] + "_segment"))
 
         for i, segment_file in enumerate(segment_files):
             logging.info("Transcribe %s segment", i)
@@ -211,7 +207,6 @@ class ParserTranscribe:
         with open(self.json_video_info_path, "w", encoding="utf-8") as f:
             json.dump(data_list, f, ensure_ascii=False, indent=4)
 
-
     def get_transcribe_video(self, url_of_video: str):
         """Основная функция для полного запуска пайплайна транскрибации видео по ссылке"""
         audio_path = self._download_channel_audio_track(url_of_video)
@@ -219,9 +214,6 @@ class ParserTranscribe:
 
 
 if __name__ == "__main__":
-    parser = ParserTranscribe(
-        "../data/audio",
-        "../data/video_info.json"
-    )
+    parser = ParserTranscribe("../data/audio", "../data/video_info.json")
     parser.get_transcribe_video("https://www.youtube.com/watch?v=MJMjGRU8uUc")
     parser.get_transcribe_video("https://www.youtube.com/watch?v=9W1v-DkXriY")

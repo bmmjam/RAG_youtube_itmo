@@ -6,15 +6,17 @@ from logging.handlers import RotatingFileHandler
 
 import httpx
 import openai
-from aiogram import Bot, Dispatcher, executor, types
+from aiogram import Bot
+from aiogram import Dispatcher
+from aiogram import executor
+from aiogram import types
+from custom_embedding import OpenAIEmbeddingProxy
 from dotenv import load_dotenv
-from llama_index import ServiceContext, StorageContext, load_index_from_storage
+from llama_index import ServiceContext
+from llama_index import StorageContext
+from llama_index import load_index_from_storage
 from openai import AsyncOpenAI
 
-from custom_embedding import OpenAIEmbeddingProxy
-
-
-# -------------------- logging --------------------
 
 logging.basicConfig(
     level=logging.INFO,
@@ -25,8 +27,6 @@ logging.basicConfig(
     ],
 )
 
-# -------------------- env --------------------
-
 load_dotenv()
 
 TOKEN = os.getenv("TG_TOKEN")
@@ -36,8 +36,6 @@ PROXY = os.getenv("PROXY")
 
 MODEL_NAME = "gpt-4o-mini"
 
-# -------------------- init --------------------
-
 logging.info("Initialization has started")
 
 http_client = httpx.AsyncClient(proxies=PROXY)
@@ -46,9 +44,7 @@ client = AsyncOpenAI(http_client=http_client)
 embed_model = OpenAIEmbeddingProxy(http_client=http_client)
 service_context = ServiceContext.from_defaults(embed_model=embed_model)
 
-storage_context = StorageContext.from_defaults(
-    persist_dir="data/index_storage_1024"
-)
+storage_context = StorageContext.from_defaults(persist_dir="data/index_storage_1024")
 
 index = load_index_from_storage(
     storage_context,
@@ -64,7 +60,6 @@ query_engine = index.as_query_engine(
 
 logging.info("Initialization is complete")
 
-# -------------------- bot --------------------
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher(bot)
@@ -75,15 +70,8 @@ retrival_query_regex = re.compile(r"Вопрос: (.*?)\n\n", re.DOTALL)
 message_regex = re.compile(r'@rag_youtube_itmo_bot[,\s]*')
 
 
-# -------------------- helpers --------------------
-
 def escape_html(text: str) -> str:
-    return (
-        text.replace("&", "&amp;")
-        .replace("<", "&lt;")
-        .replace(">", "&gt;")
-        .replace('"', "&quot;")
-    )
+    return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace('"', "&quot;")
 
 
 async def message_worker() -> None:
@@ -104,6 +92,7 @@ async def keep_typing(chat_id: int, interval: int = 5) -> None:
 
 
 # -------------------- core logic --------------------
+
 
 async def llm_context_judge(context: str, question: str) -> bool:
     """
@@ -197,21 +186,12 @@ async def answer(user_message: str, reply_to_message: str | None = None) -> str:
     if urls:
         extended = "\n\n<b>Источники:</b>\n" + "\n".join(urls)
 
-    return (
-        f"<b>Вопрос:</b> <i>{escape_html(user_message)}</i>\n\n"
-        f"<b>Ответ:</b> {main_answer}"
-        f"{extended}"
-    )
+    return f"<b>Вопрос:</b> <i>{escape_html(user_message)}</i>\n\n" f"<b>Ответ:</b> {main_answer}" f"{extended}"
 
-
-# -------------------- handlers --------------------
 
 @dp.message_handler(commands=["start", "help"])
 async def send_welcome(message: types.Message) -> None:
-    greeting = (
-        "Привет, я RAG-бот по YouTube-контенту.\n"
-        "Задавай вопросы, тегнув меня: @rag_youtube_itmo_bot"
-    )
+    greeting = "Привет, я RAG-бот по YouTube-контенту.\n" "Задавай вопросы, тегнув меня: @rag_youtube_itmo_bot"
     await message_queue.put((message.chat.id, greeting))
 
 
@@ -231,9 +211,7 @@ async def handle_tag(message: types.Message) -> None:
     await message_queue.put((message.chat.id, response))
 
 
-@dp.message_handler(
-    lambda m: m.reply_to_message and m.reply_to_message.from_user.id == BOT_ID
-)
+@dp.message_handler(lambda m: m.reply_to_message and m.reply_to_message.from_user.id == BOT_ID)
 async def handle_reply(message: types.Message) -> None:
     logging.info("Reply accepted: %s", message.text)
     typing_task = asyncio.create_task(keep_typing(message.chat.id))
@@ -248,8 +226,6 @@ async def handle_reply(message: types.Message) -> None:
 
     await message_queue.put((message.chat.id, response))
 
-
-# -------------------- run --------------------
 
 if __name__ == "__main__":
     executor.start_polling(dp, skip_updates=True, on_startup=on_startup)
