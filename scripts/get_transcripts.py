@@ -1,8 +1,9 @@
 import json
 import subprocess
-import os
 from pathlib import Path
+
 import whisper
+
 
 DATASET_RAW = Path("dataset/raw")
 DATASET_META = Path("dataset/meta/video_info.json")
@@ -31,11 +32,15 @@ for info in video_info:
         subprocess.run(
             [
                 "yt-dlp",
-                "-f", "bestaudio",
+                "-f",
+                "bestaudio",
                 "--extract-audio",
-                "--audio-format", "wav",
-                "--audio-quality", "0",
-                "-o", str(audio_path),
+                "--audio-format",
+                "wav",
+                "--audio-quality",
+                "0",
+                "-o",
+                str(audio_path),
                 url,
             ],
             check=True,
@@ -48,11 +53,7 @@ for info in video_info:
 
     print(f"[INFO] Transcribing: {video_id}")
 
-    result = model.transcribe(
-        str(audio_path),
-        fp16=False,
-        verbose=False
-    )
+    result = model.transcribe(str(audio_path), fp16=False, verbose=False)
 
     with open(transcript_path, "w", encoding="utf-8") as f:
         json.dump(result["segments"], f, ensure_ascii=False, indent=2)
@@ -60,5 +61,3 @@ for info in video_info:
     audio_path.unlink(missing_ok=True)
 
 print("✅ Transcripts saved to dataset/raw/")
-
-
