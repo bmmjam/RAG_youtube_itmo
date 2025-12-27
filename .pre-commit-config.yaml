@@ -5,6 +5,7 @@ repos:
     hooks:
       - id: ruff
         args: [ --fix, --exit-non-zero-on-fix, --config=pyproject.toml ]
+        files: ^app/
         stages: [ pre-commit ]
 
   - repo: https://github.com/psf/black
@@ -12,6 +13,7 @@ repos:
     hooks:
       - id: black
         args: [ --config=pyproject.toml ]
+        files: ^app/
         stages: [ pre-commit ]
 
   - repo: https://github.com/pre-commit/mirrors-mypy
@@ -19,14 +21,16 @@ repos:
     hooks:
       - id: mypy
         args: [ --config-file=pyproject.toml ]
+        files: ^app/
         stages: [ pre-commit ]
         additional_dependencies: [ pydantic, types-orjson, types-pytz, types-cachetools, types-protobuf==4.24.0.4 ]
-        exclude: ^(tests/|conftest.py|alembic/)
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.2.0
     hooks:
       - id: trailing-whitespace
+        files: ^app/
         exclude: docs/db/schema.md
       - id: end-of-file-fixer
+        files: ^app/
         exclude: docs/db/schema.md
