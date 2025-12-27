@@ -51,3 +51,336 @@
 2025-12-20 01:49:21,515 [INFO] dispatcher: Start polling.
 2025-12-20 01:50:13,078 [INFO] dispatcher: Stop polling...
 2025-12-20 01:50:13,079 [WARNING] executor: Goodbye!
+2025-12-26 13:40:35,121 [INFO] app: Initialization has started
+2025-12-26 13:43:17,717 [INFO] app: Initialization has started
+2025-12-26 13:43:26,978 [INFO] loading: Loading all indices.
+2025-12-26 13:46:47,320 [INFO] app: Initialization has started
+2025-12-26 13:46:53,242 [INFO] loading: Loading all indices.
+2025-12-26 13:50:34,751 [INFO] app: Initialization has started
+2025-12-26 13:50:39,277 [INFO] loading: Loading all indices.
+2025-12-26 13:50:39,460 [INFO] app: Initialization is complete
+2025-12-26 13:50:41,735 [INFO] executor: Bot: GlebAI [@Gleb_AI_bot]
+2025-12-26 13:50:43,319 [WARNING] executor: Updates were skipped successfully.
+2025-12-26 13:50:43,319 [INFO] dispatcher: Start polling.
+2025-12-26 13:51:28,169 [INFO] app: The message is accepted: @rag_youtube_itmo_bot Как дела
+2025-12-26 13:51:31,302 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-26 13:51:31,872 [INFO] app: 1 node: какие вообще есть способы переезда? Хорошо, давай тогда я, если ты не против, мне нужно важную оговорку сделать, да?
+2025-12-26 13:51:31,872 [INFO] app: 2 node: да? То есть, что люди делают, они приезжают, начинают искать работу. Есть виза студенческая,
+2025-12-26 13:51:31,872 [INFO] app: 3 node: Да, начнем с самого первого вопроса. Самый первый вопрос, как вообще попасть в Австралию,
+2025-12-26 13:51:31,872 [INFO] app: Urls of rag youtube itmo: {'&#x25CF; <a href="https://www.youtube.com/watch?v=YpJ97aKsPj0">Особенности трудоустройства в Австралии | Вебинар | karpov.courses</a>'}
+Urls of CyberTolya: set()
+2025-12-26 13:51:33,496 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-26 13:51:33,506 [INFO] app: Context is valid: NO
+2025-12-26 13:51:35,134 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-26 13:51:35,136 [INFO] app: Finally answer: К сожалению, я не могу ответить на этот вопрос, основываясь на роликах с YouTube-канала, но могу сам ответить на него.
+Спасибо, что спросили! У меня все хорошо, я всегда готов помочь вам. А как у вас дела?
+2025-12-26 13:51:50,283 [INFO] app: The message is accepted: @rag_youtube_itmo_bot Как эффективнее всего изучать ML
+2025-12-26 13:51:54,417 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-26 13:51:54,455 [INFO] app: 1 node: ну PhD, наверное, это совсем роскошно, да, но, по крайней мере, местное образование там, если это будет data science,
+2025-12-26 13:51:54,455 [INFO] app: 2 node: если это будет data science, будет шикарно. Это не всегда обязательно, я потом про это расскажу, но это усиливает ситуацию.
+2025-12-26 13:51:54,456 [INFO] app: 3 node: то наличие образования становится очень весомым плюсом, да. И конечно... Литература, PhD, да, ты имеешь в виду?
+2025-12-26 13:51:54,456 [INFO] app: Urls of rag youtube itmo: {'&#x25CF; <a href="https://www.youtube.com/watch?v=YpJ97aKsPj0">Особенности трудоустройства в Австралии | Вебинар | karpov.courses</a>'}
+Urls of CyberTolya: {'&#x25CF; <a href="https://www.youtube.com/watch?v=v3T8p_75vd4">Визуализация как метод исследования данных</a>', '&#x25CF; <a href="https://www.youtube.com/watch?v=X9wtuV_DjrU">Приступаем к аналитике</a>', '&#x25CF; <a href="https://www.youtube.com/watch?v=CcRuaCEBXpM">Алексей Чернобровов о том, как Data Science приносит пользу бизнесу | Интервью | karpov.courses</a>'}
+2025-12-26 13:51:56,839 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-26 13:51:56,842 [INFO] app: Context is valid: YES
+2025-12-26 13:52:00,320 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-26 13:52:00,323 [INFO] app: Finally answer: Эффективнее всего изучать машинное обучение (ML) через систематическое изучение основных концепций и методов, а также их практическое применение. Это может включать в себя изучение математических основ ML, таких как линейная алгебра, статистика и теория вероятностей, а также изучение различных алгоритмов ML и их применение на практике. Кроме того, важно понимать основные принципы обработки данных, предобработки и визуализации данных, так как это также является важной частью работы в области ML. Практические навыки можно развивать через участие в проектах, соревнованиях по ML, а также через выполнение задач и проектов на платформах для обучения ML, таких как Kaggle или Coursera. Также полезно изучать актуальные научные статьи и книги по ML, чтобы быть в курсе последних тенденций и разработок в этой области.
+2025-12-26 13:52:41,218 [INFO] dispatcher: Stop polling...
+2025-12-26 13:52:41,226 [WARNING] executor: Goodbye!
+2025-12-27 08:16:27,564 [INFO] index_pipeline: Transcribe 0 video
+2025-12-27 08:16:48,492 [INFO] parser_transcribe: Path to mp4 file: data/audio/vY2puvzOcbA.mp3
+
+2025-12-27 08:16:48,693 [INFO] index_pipeline: Transcribe 1 video
+2025-12-27 08:17:08,780 [INFO] parser_transcribe: Path to mp4 file: data/audio/r51Jh2-ALcc.mp3
+
+2025-12-27 08:17:14,197 [INFO] loading: Loading all indices.
+2025-12-27 08:19:47,616 [INFO] index_pipeline: Transcribe 0 video
+2025-12-27 08:20:07,172 [INFO] parser_transcribe: Path to mp4 file: data/audio/vY2puvzOcbA.mp3
+
+2025-12-27 08:20:12,939 [INFO] parser_transcribe: Transcribe 0 segment
+2025-12-27 08:20:48,872 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-12-27 08:20:49,056 [INFO] index_pipeline: Transcribe 1 video
+2025-12-27 08:21:10,544 [INFO] parser_transcribe: Path to mp4 file: data/audio/r51Jh2-ALcc.mp3
+
+2025-12-27 08:21:17,456 [INFO] parser_transcribe: Transcribe 0 segment
+2025-12-27 08:22:14,286 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-12-27 08:22:19,649 [INFO] loading: Loading all indices.
+2025-12-27 08:22:19,708 [INFO] index_pipeline: Add 0 video to index
+2025-12-27 08:22:22,820 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-27 08:22:23,040 [INFO] index_pipeline: Add 1 video to index
+2025-12-27 08:22:24,918 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-27 08:27:33,819 [INFO] app: Initialization has started
+2025-12-27 08:27:38,605 [INFO] loading: Loading all indices.
+2025-12-27 08:27:38,803 [INFO] app: Initialization is complete
+2025-12-27 08:27:40,928 [INFO] executor: Bot: GlebAI [@Gleb_AI_bot]
+2025-12-27 08:27:41,411 [WARNING] executor: Updates were skipped successfully.
+2025-12-27 08:27:41,412 [INFO] dispatcher: Start polling.
+2025-12-27 08:27:56,575 [INFO] app: The message is accepted: @rag_youtube_itmo_bot how to be a man?
+2025-12-27 08:27:58,625 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-27 08:27:59,178 [INFO] app: 1 node: но нужно быть человеком, который известен, например, в своем каком-то сообществе,
+2025-12-27 08:27:59,178 [INFO] app: 2 node: Значит, здесь смотрите, если ваш кейс простой, то есть, грубо говоря, вы одинокий мужчина или женщина, там,
+2025-12-27 08:27:59,179 [INFO] app: 3 node: что вы не можете голосовать и служить в армии. Как правило, никого это не огорчает, да, и это прямой путь к получению гражданства.
+2025-12-27 08:27:59,179 [INFO] app: Urls of rag youtube itmo: {'&#x25CF; <a href="https://www.youtube.com/watch?v=YpJ97aKsPj0">Особенности трудоустройства в Австралии | Вебинар | karpov.courses</a>'}
+Urls of CyberTolya: {'&#x25CF; <a href="https://www.youtube.com/watch?v=gljfGAkgX_o">Никита Маршалкин: A/B-тесты сложнее, чем кажется | Интервью | karpov.courses</a>', '&#x25CF; <a href="https://www.youtube.com/watch?v=IQUt9qTsQ0s">10 вопросов про A/B-тесты | Часть 1 | Валерий Бабушкин | karpov.courses</a>', '&#x25CF; <a href="https://www.youtube.com/watch?v=NcDcxOqB52k">Об A/B тестах без A/B тестов | Никита Маршалкин | karpov.courses</a>'}
+2025-12-27 08:28:00,619 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-27 08:28:00,629 [INFO] app: Context is valid: NO
+2025-12-27 08:28:02,921 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-27 08:28:02,924 [INFO] app: Finally answer: К сожалению, я не могу ответить на этот вопрос, основываясь на роликах с YouTube-канала, но могу сам ответить на него.
+Being a man is not about conforming to traditional gender roles or stereotypes. Instead, being a man means being true to yourself and living with integrity, empathy, and respect for others. Here are some ways to embody positive masculinity:
+
+1. Embrace vulnerability: Being a man does not mean suppressing emotions or vulnerability. It's important to be open and honest about your feelings and seek support when needed.
+
+2. Practice empathy: Show empathy and understanding towards others, and strive to be a good listener and supportive friend.
+
+3. Respect others: Treat everyone with respect, regardless of their gender, race, or background. Respect boundaries and consent in all relationships.
+
+4. Take responsibility: Take responsibility for your actions and their consequences. Admit when you're wrong and strive to make amends.
+
+5. Be a positive role model: Lead by example and demonstrate kindness, compassion, and integrity in your actions.
+
+6. Challenge toxic masculinity: Stand up against harmful stereotypes and behaviors that perpetuate toxic masculinity, such as aggression, dominance, and emotional suppression.
+
+7. Support gender equality: Advocate for gender equality and work towards creating a more inclusive and equitable society for all genders.
+
+Ultimately, being a man means being true to yourself and living with integrity, empathy, and respect for others. It's about being a positive force in the world and striving to make a difference in the lives of those around you.
+2025-12-27 08:30:32,597 [INFO] app: The message is accepted: @rag_youtube_itmo_bot как стать мужчиной
+2025-12-27 08:30:35,260 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-27 08:30:35,321 [INFO] app: 1 node: что вы не можете голосовать и служить в армии. Как правило, никого это не огорчает, да, и это прямой путь к получению гражданства.
+2025-12-27 08:30:35,321 [INFO] app: 2 node: Значит, здесь смотрите, если ваш кейс простой, то есть, грубо говоря, вы одинокий мужчина или женщина, там,
+2025-12-27 08:30:35,321 [INFO] app: 3 node: вы одинокий мужчина или женщина, там, не знаю, 28 лет с опытом работы в дата-сайенс,
+2025-12-27 08:30:35,321 [INFO] app: Urls of rag youtube itmo: {'&#x25CF; <a href="https://www.youtube.com/watch?v=YpJ97aKsPj0">Особенности трудоустройства в Австралии | Вебинар | karpov.courses</a>'}
+Urls of CyberTolya: {'&#x25CF; <a href="https://www.youtube.com/watch?v=c8jI0c66fuo">Лёша Синельников — как долго искать себя и найти в CPA-трафике | Подкаст | karpov.courses</a>', '&#x25CF; <a href="https://www.youtube.com/watch?v=CcRuaCEBXpM">Алексей Чернобровов о том, как Data Science приносит пользу бизнесу | Интервью | karpov.courses</a>'}
+2025-12-27 08:30:36,487 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-27 08:30:36,499 [INFO] app: Context is valid: NO
+2025-12-27 08:30:40,379 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-27 08:30:40,381 [INFO] app: Finally answer: К сожалению, я не могу ответить на этот вопрос, основываясь на роликах с YouTube-канала, но могу сам ответить на него.
+Стать мужчиной означает развивать свои качества и характеристики, которые обычно ассоциируются с мужественностью. Вот несколько способов, как можно стать мужчиной:
+
+1. Проявляйте ответственность. Будьте готовы взять на себя ответственность за свои действия и за других людей, особенно если они зависят от вас.
+
+2. Будьте честными и надежными. Старайтесь быть честным и надежным человеком, на которого другие могут положиться.
+
+3. Развивайте свои навыки. Учите новые вещи, развивайте свои навыки и стремитесь к самосовершенствованию.
+
+4. Будьте уверенными в себе. Верьте в себя и свои способности, и не бойтесь принимать вызовы.
+
+5. Будьте сострадательными. Покажите заботу и сострадание к другим людям, будьте готовы помочь тем, кто в нужде.
+
+6. Будьте физически активными. Заботьтесь о своем здоровье и физической форме, занимайтесь спортом и здоровым образом жизни.
+
+7. Будьте уважительными. Уважайте других людей, их мнения и чувства.
+
+Это лишь несколько способов, как можно стать мужчиной. Важно помнить, что каждый человек уникален, и каждый может развивать свои собственные качества и характеристики, чтобы стать лучшим версией себя.
+2025-12-27 08:35:47,135 [INFO] index_pipeline: Transcribe 0 video
+2025-12-27 08:36:07,070 [INFO] parser_transcribe: Path to mp4 file: data/audio/22tkx79icy4.mp3
+
+2025-12-27 08:36:12,213 [INFO] parser_transcribe: Transcribe 0 segment
+2025-12-27 08:36:59,473 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-12-27 08:37:01,861 [INFO] index_pipeline: Add 0 video to index
+2025-12-27 08:37:05,574 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-27 08:37:15,623 [INFO] dispatcher: Stop polling...
+2025-12-27 08:37:15,634 [WARNING] executor: Goodbye!
+2025-12-27 08:37:22,834 [INFO] app: Initialization has started
+2025-12-27 08:37:27,585 [INFO] loading: Loading all indices.
+2025-12-27 08:37:27,788 [INFO] app: Initialization is complete
+2025-12-27 08:37:30,305 [INFO] executor: Bot: GlebAI [@Gleb_AI_bot]
+2025-12-27 08:37:31,828 [WARNING] executor: Updates were skipped successfully.
+2025-12-27 08:37:31,828 [INFO] dispatcher: Start polling.
+2025-12-27 08:37:38,176 [INFO] app: The message is accepted: @rag_youtube_itmo_bot что такое RAG и для чего он
+2025-12-27 08:37:39,807 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-27 08:37:40,365 [INFO] app: 1 node: то есть здесь существует вот эта бальная система, а когда мы говорим про независимую иммиграцию,
+2025-12-27 08:37:40,366 [INFO] app: 2 node: не знаю, членом жюри какого-то конкурса, да, или проводит все время хакатоны или какие-то вот такие вещи,
+2025-12-27 08:37:40,366 [INFO] app: 3 node: то он может подаваться из-за границы, его могут спонсировать на рабочую визу,
+2025-12-27 08:37:40,366 [INFO] app: Urls of rag youtube itmo: {'&#x25CF; <a href="https://www.youtube.com/watch?v=YpJ97aKsPj0">Особенности трудоустройства в Австралии | Вебинар | karpov.courses</a>'}
+Urls of CyberTolya: set()
+2025-12-27 08:37:41,627 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-27 08:37:41,638 [INFO] app: Context is valid: NO
+2025-12-27 08:37:44,729 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-27 08:37:44,731 [INFO] app: Finally answer: К сожалению, я не могу ответить на этот вопрос, основываясь на роликах с YouTube-канала, но могу сам ответить на него.
+RAG (Red, Amber, Green) - это метод оценки проектов или задач, который используется для определения их текущего состояния и прогнозирования возможных рисков. Каждая задача или проект оценивается по трём категориям: красный (Red) - задача или проект находится в критическом состоянии и требует немедленного вмешательства, жёлтый (Amber) - задача или проект находится в состоянии риска и требует внимания, зелёный (Green) - задача или проект находится в хорошем состоянии и не требует дополнительных мероприятий. RAG помогает команде проекта или менеджеру оценить текущее положение и принять соответствующие решения для улучшения ситуации.
+2025-12-27 08:51:15,765 [INFO] app: Initialization has started
+2025-12-27 08:51:20,651 [INFO] loading: Loading all indices.
+2025-12-27 08:53:27,559 [INFO] app: Initialization has started
+2025-12-27 08:53:32,453 [INFO] loading: Loading all indices.
+2025-12-27 08:53:32,531 [INFO] app: Initialization is complete
+2025-12-27 08:53:34,331 [INFO] executor: Bot: GlebAI [@Gleb_AI_bot]
+2025-12-27 08:53:34,740 [WARNING] executor: Updates were skipped successfully.
+2025-12-27 08:53:34,740 [INFO] dispatcher: Start polling.
+2025-12-27 08:53:35,150 [INFO] app: Message accepted: @rag_youtube_itmo_bot что такое RAG и зачем он
+2025-12-27 08:53:36,789 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-27 08:53:36,812 [INFO] app: 1 node: то есть здесь существует вот эта бальная система, а когда мы говорим про независимую иммиграцию,
+2025-12-27 08:53:36,812 [INFO] app: 2 node: то он может подаваться из-за границы, его могут спонсировать на рабочую визу,
+2025-12-27 08:53:36,812 [INFO] app: 3 node: не знаю, членом жюри какого-то конкурса, да, или проводит все время хакатоны или какие-то вот такие вещи,
+2025-12-27 08:53:38,428 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-27 08:53:38,430 [INFO] app: Context judge: False
+2025-12-27 08:53:52,717 [INFO] dispatcher: Stop polling...
+2025-12-27 08:53:52,718 [WARNING] executor: Goodbye!
+2025-12-27 08:56:02,323 [INFO] index_pipeline: Transcribe 0 video
+2025-12-27 08:56:19,072 [INFO] parser_transcribe: Path to mp4 file: data/audio/22tkx79icy4.mp3
+
+2025-12-27 08:56:24,381 [INFO] parser_transcribe: Transcribe 0 segment
+2025-12-27 08:57:10,433 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-12-27 08:57:12,866 [INFO] index_pipeline: Add 0 video to index
+2025-12-27 08:57:15,218 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-27 08:59:06,921 [INFO] index_pipeline: Transcribe 0 video
+2025-12-27 08:59:30,953 [INFO] parser_transcribe: Path to mp4 file: data/audio/22tkx79icy4.mp3
+
+2025-12-27 08:59:36,112 [INFO] parser_transcribe: Transcribe 0 segment
+2025-12-27 09:00:16,808 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-12-27 09:00:16,816 [INFO] index_pipeline: Transcribe 1 video
+2025-12-27 09:00:39,672 [INFO] parser_transcribe: Path to mp4 file: data/audio/sbMzUOXcyWw.mp3
+
+2025-12-27 09:00:47,802 [INFO] parser_transcribe: Transcribe 0 segment
+2025-12-27 09:02:03,050 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-12-27 09:02:05,538 [INFO] loading: Loading all indices.
+2025-12-27 09:02:05,539 [INFO] index_pipeline: Add 0 video to index
+2025-12-27 09:02:09,166 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-27 09:02:09,381 [INFO] index_pipeline: Add 1 video to index
+2025-12-27 09:02:10,286 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-27 09:02:33,363 [INFO] app: Initialization has started
+2025-12-27 09:02:38,372 [INFO] loading: Loading all indices.
+2025-12-27 09:02:38,451 [INFO] app: Initialization is complete
+2025-12-27 09:02:40,981 [INFO] executor: Bot: GlebAI [@Gleb_AI_bot]
+2025-12-27 09:02:42,381 [WARNING] executor: Updates were skipped successfully.
+2025-12-27 09:02:42,381 [INFO] dispatcher: Start polling.
+2025-12-27 09:02:47,391 [INFO] app: Message accepted: @rag_youtube_itmo_bot что такое LLM арена и RAG
+2025-12-27 09:02:48,732 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-27 09:02:48,765 [INFO] app: 1 node: но я очень хочу, чтобы вы понимали, что визовые рекомендации может давать только зарегистрированный миграционный агент.
+2025-12-27 09:02:48,765 [INFO] app: 2 node: то есть здесь существует вот эта бальная система, а когда мы говорим про независимую иммиграцию,
+2025-12-27 09:02:48,765 [INFO] app: 3 node: да, как независимый консультант. В том числе у меня вечерский бэкграунд, я достаточно долго в Москве работала, в автомобильном рынке.
+2025-12-27 09:02:50,086 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-27 09:02:50,097 [INFO] app: Context judge: False
+2025-12-27 09:03:18,243 [INFO] app: Message accepted: @rag_youtube_itmo_bot автомобильный рынок есть?
+2025-12-27 09:03:20,426 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-27 09:03:20,452 [INFO] app: 1 node: да, как независимый консультант. В том числе у меня вечерский бэкграунд, я достаточно долго в Москве работала, в автомобильном рынке.
+2025-12-27 09:03:20,453 [INFO] app: 2 node: Это важно, да? Вот, поэтому давайте, да, немножко поговорим про австралийский рынок и вообще,
+2025-12-27 09:03:20,453 [INFO] app: 3 node: то наличие образования становится очень весомым плюсом, да. И конечно... Литература, PhD, да, ты имеешь в виду?
+2025-12-27 09:03:21,218 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-27 09:03:21,222 [INFO] app: Context judge: True
+2025-12-27 09:03:22,954 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-27 09:03:40,360 [INFO] dispatcher: Stop polling...
+2025-12-27 09:03:40,361 [WARNING] executor: Goodbye!
+2025-12-27 09:04:44,138 [INFO] index_pipeline: Transcribe 0 video
+2025-12-27 09:05:04,471 [INFO] parser_transcribe: Path to mp4 file: data/audio/22tkx79icy4.mp3
+
+2025-12-27 09:05:09,708 [INFO] parser_transcribe: Transcribe 0 segment
+2025-12-27 09:05:55,901 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-12-27 09:05:55,913 [INFO] index_pipeline: Transcribe 1 video
+2025-12-27 09:06:16,073 [INFO] parser_transcribe: Path to mp4 file: data/audio/sbMzUOXcyWw.mp3
+
+2025-12-27 09:06:24,271 [INFO] parser_transcribe: Transcribe 0 segment
+2025-12-27 09:07:38,757 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-12-27 09:07:44,131 [INFO] loading: Loading all indices.
+2025-12-27 09:07:44,137 [INFO] index_pipeline: Add 0 video to index
+2025-12-27 09:07:47,008 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-27 09:07:47,319 [INFO] index_pipeline: Add 1 video to index
+2025-12-27 09:07:47,977 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-27 09:08:26,874 [INFO] app: Initialization has started
+2025-12-27 09:08:35,223 [INFO] loading: Loading all indices.
+2025-12-27 09:08:35,305 [INFO] app: Initialization is complete
+2025-12-27 09:08:37,295 [INFO] executor: Bot: GlebAI [@Gleb_AI_bot]
+2025-12-27 09:08:38,876 [WARNING] executor: Updates were skipped successfully.
+2025-12-27 09:08:38,876 [INFO] dispatcher: Start polling.
+2025-12-27 09:08:39,288 [INFO] app: Message accepted: @rag_youtube_itmo_bot автомобильный рынок есть?
+2025-12-27 09:08:41,108 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-27 09:08:41,150 [INFO] app: 1 node: да, как независимый консультант. В том числе у меня вечерский бэкграунд, я достаточно долго в Москве работала, в автомобильном рынке.
+2025-12-27 09:08:41,150 [INFO] app: 2 node: Это важно, да? Вот, поэтому давайте, да, немножко поговорим про австралийский рынок и вообще,
+2025-12-27 09:08:41,150 [INFO] app: 3 node: то наличие образования становится очень весомым плюсом, да. И конечно... Литература, PhD, да, ты имеешь в виду?
+2025-12-27 09:08:41,703 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-27 09:08:41,712 [INFO] app: Context judge: True
+2025-12-27 09:08:43,363 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-27 09:09:16,382 [INFO] dispatcher: Stop polling...
+2025-12-27 09:09:16,382 [WARNING] executor: Goodbye!
+2025-12-27 09:09:52,653 [INFO] index_pipeline: Transcribe 0 video
+2025-12-27 09:10:10,786 [INFO] parser_transcribe: Path to mp4 file: data/audio/22tkx79icy4.mp3
+
+2025-12-27 09:10:15,799 [INFO] parser_transcribe: Transcribe 0 segment
+2025-12-27 09:11:02,036 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-12-27 09:11:02,041 [INFO] index_pipeline: Transcribe 1 video
+2025-12-27 09:11:26,131 [INFO] parser_transcribe: Path to mp4 file: data/audio/sbMzUOXcyWw.mp3
+
+2025-12-27 09:11:33,911 [INFO] parser_transcribe: Transcribe 0 segment
+2025-12-27 09:12:32,623 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/audio/transcriptions "HTTP/1.1 200 OK"
+2025-12-27 09:12:34,724 [INFO] index_pipeline: Add 0 video to index
+2025-12-27 09:12:37,216 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-27 09:12:37,419 [INFO] index_pipeline: Add 1 video to index
+2025-12-27 09:12:38,041 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-27 09:14:22,902 [INFO] app: Initialization has started
+2025-12-27 09:14:25,074 [INFO] loading: Loading all indices.
+2025-12-27 09:14:25,146 [INFO] app: Initialization is complete
+2025-12-27 09:14:27,187 [INFO] executor: Bot: GlebAI [@Gleb_AI_bot]
+2025-12-27 09:14:28,562 [WARNING] executor: Updates were skipped successfully.
+2025-12-27 09:14:28,562 [INFO] dispatcher: Start polling.
+2025-12-27 09:14:37,202 [INFO] app: Message accepted: @rag_youtube_itmo_bot
+2025-12-27 09:14:37,205 [ERROR] base_events: Task exception was never retrieved
+future: <Task finished name='Task-10' coro=<Dispatcher._process_polling_updates() done, defined at /home/jam/Git/RAG_youtube_itmo/.venv/lib/python3.11/site-packages/aiogram/dispatcher/dispatcher.py:380> exception=TypeError("unsupported operand type(s) for *: 'NoneType' and 'float'")>
+Traceback (most recent call last):
+  File "/home/jam/Git/RAG_youtube_itmo/.venv/lib/python3.11/site-packages/aiogram/dispatcher/dispatcher.py", line 388, in _process_polling_updates
+    for responses in itertools.chain.from_iterable(await self.process_updates(updates, fast)):
+                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jam/Git/RAG_youtube_itmo/.venv/lib/python3.11/site-packages/aiogram/dispatcher/dispatcher.py", line 225, in process_updates
+    return await asyncio.gather(*tasks)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jam/Git/RAG_youtube_itmo/.venv/lib/python3.11/site-packages/aiogram/dispatcher/handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jam/Git/RAG_youtube_itmo/.venv/lib/python3.11/site-packages/aiogram/dispatcher/dispatcher.py", line 246, in process_update
+    return await self.message_handlers.notify(update.message)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jam/Git/RAG_youtube_itmo/.venv/lib/python3.11/site-packages/aiogram/dispatcher/handler.py", line 117, in notify
+    response = await handler_obj.handler(*args, **partial_data)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jam/Git/RAG_youtube_itmo/app/app.py", line 225, in handle_tag
+    response = await answer(user_message)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jam/Git/RAG_youtube_itmo/app/app.py", line 142, in answer
+    retrival = await query_engine.aquery(retrival_query)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jam/Git/RAG_youtube_itmo/.venv/lib/python3.11/site-packages/llama_index/core/base_query_engine.py", line 36, in aquery
+    return await self._aquery(str_or_query_bundle)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jam/Git/RAG_youtube_itmo/.venv/lib/python3.11/site-packages/llama_index/query_engine/retriever_query_engine.py", line 185, in _aquery
+    nodes = await self.aretrieve(query_bundle)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jam/Git/RAG_youtube_itmo/.venv/lib/python3.11/site-packages/llama_index/query_engine/retriever_query_engine.py", line 130, in aretrieve
+    nodes = await self._retriever.aretrieve(query_bundle)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jam/Git/RAG_youtube_itmo/.venv/lib/python3.11/site-packages/llama_index/core/base_retriever.py", line 63, in aretrieve
+    nodes = await self._aretrieve(query_bundle)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jam/Git/RAG_youtube_itmo/.venv/lib/python3.11/site-packages/llama_index/indices/vector_store/retrievers/retriever.py", line 99, in _aretrieve
+    return await self._aget_nodes_with_embeddings(query_bundle)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jam/Git/RAG_youtube_itmo/.venv/lib/python3.11/site-packages/llama_index/indices/vector_store/retrievers/retriever.py", line 171, in _aget_nodes_with_embeddings
+    query_result = await self._vector_store.aquery(query, **self._kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jam/Git/RAG_youtube_itmo/.venv/lib/python3.11/site-packages/llama_index/vector_stores/types.py", line 204, in aquery
+    return self.query(query, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jam/Git/RAG_youtube_itmo/.venv/lib/python3.11/site-packages/llama_index/vector_stores/simple.py", line 274, in query
+    top_similarities, top_ids = get_top_k_embeddings(
+                                ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jam/Git/RAG_youtube_itmo/.venv/lib/python3.11/site-packages/llama_index/indices/query/embedding_utils.py", line 31, in get_top_k_embeddings
+    similarity = similarity_fn(query_embedding_np, emb)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jam/Git/RAG_youtube_itmo/.venv/lib/python3.11/site-packages/llama_index/embeddings/base.py", line 47, in similarity
+    product = np.dot(embedding1, embedding2)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: unsupported operand type(s) for *: 'NoneType' and 'float'
+2025-12-27 09:14:45,541 [INFO] app: Message accepted: @rag_youtube_itmo_bot автомобильный рынок есть?
+2025-12-27 09:14:48,012 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-27 09:14:48,025 [INFO] app: 1 node: Они предоставляют удобное IP, в котором можно спокойно посылать свои запросы почти в любые Open Source LLM. Если же вы не хотите посылать свои данные в сторонние сервисы и у вас есть требования к большой нагрузке, придется раскошелиться на видеокарты и использовать особые фреймворки для инференса, такие как TRT-LLM, VLLM, TGI и другие. Эти фреймворки постоянно выпускают новые оптимизации инференса с учетом современных архитектур GPU и заимствуют друг у друга нововведения, поэтому выбрать можно любой понравившийся. Мы много хвалим модели и рассказываем об их доступности, а есть ли минусы? Конечно есть. Модели они как люди, каждая со своим характером. Одна отвечает длинно, другая коротко, одна грубо, другая нежно. Как можно повлиять на то, как отвечает модель? На помощь приходит промпт, это и есть часть описания инструкции, которая подсказывает модели, каким образом построить свой ответ. Подбор промпта это очень важная задача, хоть многие относятся к ней пренебрежительно, подобрать правильный промпт порой бывает очень сложно, но он при этом может давать заметный буст к качеству. Техники бывают довольно разные, от несерьезных, например предложить модели денежное вознаграждение за хороший ответ, до довольно сложных, таких как chain of где модель просит порассуждать несколько шагов диалога перед тем, как дать финальный ответ, и это действительно дает буст в качестве и используется на проде. Другая проблема заключается в том, что модели ограничены теми знаниями, которые были у нее в обучающем корпусе, и эти знания всегда ограничены по времени. Ответы дала ЛМ о том, какой сейчас самый последний айфон будет одинаковым сейчас и даже через год.
+2025-12-27 09:14:48,025 [INFO] app: 2 node: Можно обучать как всю модель, для этого нам скорее всего потребуется небольшой кластер от 8 до 10, а может быть даже и сотен видеокарт, или же можно дообучать легковестные добавки, адаптеры, например адаптеры это питюнинг, то есть блоки которые подаются на вход вместе с энкодингами токенов и по сути заменяют подобранную инструкцию или лора, это модификация линейных слоев, которая позволяет за счет небольших матриц изменить поведение модели. Существуют и продвинутые техники для обучения такие как преференс тюнинг или обучение на предпочтениях, для подобного обучения не нужны пары текстов, инструкции и ответ, а нужны пары ответов к одной инструкции, один из которых размечен как более предпочтительный чем другой. Подобные данные можно собирать на взаимодействии с пользователем, например давать ему два ответа и просить выбрать какой из них лучше. Таким образом мы можем дообучать модель в ходе ее жизненного цикла на взаимодействиях с юзерами. Все это время мы говорим про обучение модели, про их использование, но мы так и не подняли тему того как выбрать модель, как вообще понять насколько модель хороша и как сделать выбор осознанно. Все, я скоро вас отпущу, простите. На помощь приходят бенчмарки, они бывают разные, например сдача классификации, саморизации, по которым вполне себе понятны оффлайн метрики, это классические дискриминативные НЛП задачи. Но как оценить модель на задачи ассистента, как вообще можно оценить ответ на открытый вопрос.
+2025-12-27 09:14:48,025 [INFO] app: 3 node: Ответы дала ЛМ о том, какой сейчас самый последний айфон будет одинаковым сейчас и даже через год. Как решить эту проблему? На помощь приходит раг, ретриевл, на помощь приходит раг, на помощь приходит раг, ретриевл, это техника заключается в том, что мы берем какую-то коллекцию документов, сжимаем их энкодером, например бертом и кладем в особую векторную базу данных, после этого запрос пользователя тоже векторизуется и к нему ищутся самые релевантные тексты, эти тексты подклеиваются к входным данным ЛЛМ, после чего она постарается дать, она не может стараться эта машина, нельзя душевлять инструментом, эти тексты потом подклеиваются к входному контексту ЛЛМ и она может использовать данные тексты, чтобы дать более правдивый и точный ответ, например популярное применение это общение с ПДФ, если вас завалило бюрократией или вам просто одиноко, можно пообщаться с коллекцией своих ПДФ документов, спросить, какой у вас баланс по счетам, что вам принадлежит и кому вы должны денег. Раг-система как выдаст и ответ с помощью ЛЛМ своими словами, так и сможет подсветить вам нужные параграфы текста, где содержалась релевантная информация. Другой способ обогатить модели знаниями или улучшить качество на своих задачах это файн тюнинг, модели можно и даже нужно дообучать, несмотря на их пугающие размеры.
+2025-12-27 09:14:48,859 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-27 09:14:48,864 [INFO] app: Context judge: False
+2025-12-27 09:14:59,517 [INFO] app: Message accepted: @rag_youtube_itmo_bot что такое RAG и LLM агенты
+2025-12-27 09:15:00,866 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2025-12-27 09:15:00,900 [INFO] app: 1 node: Это все будет переводиться, трансформируется в вектора. Вектора будут сравниваться с вашей датабазой. И будут даваться augmented prompts в LLM с контекстом о вашем специфическом товаре. И уже будет ответ для клиента со всеми тонкостями вашего товара. RAG – это вообще суперкрутая вещь. Она фиксит проблему, что у LLM достаточно маленькое контекстное окно. Применения этому RAG очень много. Все ограничивается только, как всегда, вашей фантазией. В следующих видео мы можем разобрать разновидности RAG. Такие как CAG, CAG и так далее. Их достаточно много. Я хочу показать, как создать свою RAG-систему. Я очень надеюсь, что я понятно объяснил RAG. Что у вас теперь не вызывает вопросов эта аббревиатура. И вам полностью понятна данная тема. Если вам понравился данный видеоролик, пожалуйста, поставьте лайк. Это помогает в продвижении данного контента. И напишите в комментариях, что вы хотите увидеть дальше. Всех благодарю за просмотр. Всем удачи, скоро увидимся.
+2025-12-27 09:15:00,900 [INFO] app: 2 node: Ответы дала ЛМ о том, какой сейчас самый последний айфон будет одинаковым сейчас и даже через год. Как решить эту проблему? На помощь приходит раг, ретриевл, на помощь приходит раг, на помощь приходит раг, ретриевл, это техника заключается в том, что мы берем какую-то коллекцию документов, сжимаем их энкодером, например бертом и кладем в особую векторную базу данных, после этого запрос пользователя тоже векторизуется и к нему ищутся самые релевантные тексты, эти тексты подклеиваются к входным данным ЛЛМ, после чего она постарается дать, она не может стараться эта машина, нельзя душевлять инструментом, эти тексты потом подклеиваются к входному контексту ЛЛМ и она может использовать данные тексты, чтобы дать более правдивый и точный ответ, например популярное применение это общение с ПДФ, если вас завалило бюрократией или вам просто одиноко, можно пообщаться с коллекцией своих ПДФ документов, спросить, какой у вас баланс по счетам, что вам принадлежит и кому вы должны денег. Раг-система как выдаст и ответ с помощью ЛЛМ своими словами, так и сможет подсветить вам нужные параграфы текста, где содержалась релевантная информация. Другой способ обогатить модели знаниями или улучшить качество на своих задачах это файн тюнинг, модели можно и даже нужно дообучать, несмотря на их пугающие размеры.
+2025-12-27 09:15:00,901 [INFO] app: 3 node: Эти Vectors сравнили, появился контекст, который дается в Augmented Prompt. В третьем у нас идет сам Prompt, в который юзер писал, в нашем случае, какая планета самая близкая к Солнцу. Весь этот Augmented Prompt дается на Input в LLM. Это может быть ChatGPT, Cloud, Gemini, это может быть любая Large Language Models, может быть OLAMO, в общем их сотня, это все не имеет значения. LLM в запросе имеет уже контекст, и LLM в запросе имеет, соответственно, инструкцию, как ей взаимодействовать. Она имеет Prompt User, то есть его вопрос, и она уже имеет контекст. Это будет либо ответ на вопрос из датабазы, либо информация, которая связана с этим вопросом. И, исходя из этих трех пунктов, она уже формирует ответ, присылает его обратно юзеру. Важный момент, если юзер дает какой-либо Prompt, и ответа, либо смежной информации с этим Prompt нет в датабазе, LLM выдаст обратно, что она не знает ответ на данный вопрос. На самом деле, это намного лучше, чем LLM просто будет вам нести чушь, давать ложные факты и сведения. В целом, так и работают RAG-системы. Вы можете использовать их в большом количестве случаев. Например, вам нужно, чтобы ваша LLM, а именно это уже будет AI-agent, консультировала клиента по вашему товару. Это может быть какой-то софт, еще что-то там, iPad и так далее. Создаете датабазу, вносите всю информацию о продукте, о вашем продукте, о вашем софте, всю спецификацию, все тонкости вашего товара, все прописываете в датабазу. И теперь AI-agent при общении с клиентом будет давать достоверные сведения о вашем товаре. Получается промпт, допустим, это ваш клиент, он будет давать промпт. Это все будет переводиться, трансформируется в вектора. Вектора будут сравниваться с вашей датабазой.
+2025-12-27 09:15:01,815 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-27 09:15:01,817 [INFO] app: Context judge: True
+2025-12-27 09:15:06,758 [INFO] _client: HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-12-27 09:33:26,824 [INFO] dispatcher: Stop polling...
+2025-12-27 09:33:26,825 [WARNING] executor: Goodbye!
