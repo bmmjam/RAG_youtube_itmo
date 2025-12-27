@@ -57,7 +57,6 @@ query_engine = index.as_query_engine(
     include_text=True,
 )
 
-
 logging.info("Initialization is complete")
 
 
@@ -96,23 +95,23 @@ async def keep_typing(chat_id: int, interval: int = 5) -> None:
 
 async def llm_context_judge(context: str, question: str) -> bool:
     """
-    LLM-судья: отвечает, содержит ли контекст
+    LLM: отвечает, содержит ли контекст
     ДОСТАТОЧНУЮ информацию для ответа на вопрос.
     """
     prompt = f"""
-Контекст:
----
-{context}
----
+        Контекст:
+        ---
+        {context}
+        ---
 
-Вопрос:
-{question}
+        Вопрос:
+        {question}
 
-Достаточно ли информации в контексте, чтобы ответить на вопрос
-ФАКТИЧЕСКИ и КОНКРЕТНО, без домыслов?
+        Достаточно ли информации в контексте, чтобы ответить на вопрос
+        ФАКТИЧЕСКИ и КОНКРЕТНО, без домыслов?
 
-Ответь строго одним словом: YES или NO.
-"""
+        Ответь строго одним словом: YES или NO.
+        """
     resp = await client.chat.completions.create(
         model=MODEL_NAME,
         temperature=0,
@@ -145,7 +144,6 @@ async def answer(user_message: str, reply_to_message: str | None = None) -> str:
     context_text = " ".join(node.text for node in source_nodes)
     context_text = escape_html(context_text)
 
-    # ---------- LLM judge ----------
     is_relevant = await llm_context_judge(context_text, user_message)
     logging.info("Context judge: %s", is_relevant)
 
@@ -155,19 +153,18 @@ async def answer(user_message: str, reply_to_message: str | None = None) -> str:
             f"<b>Ответ:</b> В базе знаний нет релевантной информации для ответа на этот вопрос."
         )
 
-    # ---------- generation ----------
     generation_prompt = f"""
-Используя информацию ниже, ответь на вопрос пользователя.
-Если информации недостаточно — явно укажи это.
+        Используя информацию ниже, ответь на вопрос пользователя.
+        Если информации недостаточно — явно укажи это.
 
-Контекст:
----
-{context_text}
----
+        Контекст:
+        ---
+        {context_text}
+        ---
 
-Вопрос:
-{user_message}
-"""
+        Вопрос:
+        {user_message}
+        """
 
     gpt_response = await client.chat.completions.create(
         model=MODEL_NAME,
