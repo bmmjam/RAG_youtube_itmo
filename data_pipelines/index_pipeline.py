@@ -51,28 +51,6 @@ class IndexPipeline:
         with open(self.url_file_path, "r", encoding="utf-8") as f:
             return [line.strip() for line in f if line.strip()]
 
-    '''
-    def _get_download_urls(self, channel_url) -> List[str]:
-        """Определяет список видео для скачивания"""
-
-        # Determine the set of downloaded videos
-        downloaded_videos = set()
-        if os.path.exists(self.url_file_path):
-            with open(self.url_file_path, "r", encoding="utf-8") as f:
-                for line in f:
-                    downloaded_videos.add(line.strip())
-
-        # Determine the set of videos to download
-        new_videos = list(set(get_video_urls(channel_url)) - downloaded_videos)
-
-        # Add new videos to the file
-        with open(self.url_file_path, "a", encoding="utf-8") as f:
-            for video in new_videos:
-                f.write(video + "\n")
-
-        return new_videos
-    '''
-
     def _transcribe_videos(self, new_videos: List[str]) -> None:
         """
         Скачивает и транскрибирует видео из списка self.new_videos.

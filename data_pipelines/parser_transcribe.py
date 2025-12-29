@@ -111,7 +111,7 @@ class ParserTranscribe:
         file_path : str
             Путь к исходному аудиофайлу, который необходимо разделить.
         output_pattern : str
-            Шаблон имени выходного файла. Должен содержать `%03d` для нумерации сегментов
+            Шаблон имени выходного файла. Должен содержать %03d для нумерации сегментов
             (например, "output_segment%03d.mp3").
 
         Returns
@@ -215,5 +215,3 @@ class ParserTranscribe:
 
 if __name__ == "__main__":
     parser = ParserTranscribe("../data/audio", "../data/video_info.json")
-    parser.get_transcribe_video("https://www.youtube.com/watch?v=MJMjGRU8uUc")
-    parser.get_transcribe_video("https://www.youtube.com/watch?v=9W1v-DkXriY")
