@@ -163,30 +163,11 @@ make run-bot
       <img src="demo/RAG_demo.png" width="100%">
     </td>
     <td>
-      <img src="demo3/RAG_demo.png" width="100%">
+      <img src="demo3/RAG_demo3.png" width="100%">
     </td>
   </tr>
 </table>
 
-<table>
-  <tr>
-    <td>
-      (/home/jam/Git/RAG_youtube_itmo/demo/RAG_demo2.png)
-      <br>
-      *Подпись к картинке 1*
-    </td>
-    <td>
-      ![Картинка 2](/home/jam/Git/RAG_youtube_itmo/demo/RAG_demo.png)
-      <br>
-      *Подпись 2*
-    </td>
-    <td>
-      ![Картинка 3](/home/jam/Git/RAG_youtube_itmo/demo/RAG_demo3.png)
-      <br>
-      *Подпись 3*
-    </td>
-  </tr>
-</table>
 
 ------
 
