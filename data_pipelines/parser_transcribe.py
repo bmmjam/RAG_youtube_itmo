@@ -45,7 +45,7 @@ class ParserTranscribe:
     max_attempts: int = 5  # максимальное количество попыток
     delay: int = 10  # задержка между попытками в секундах
 
-    def _get_video_info(self, video_url: str) -> dict:
+    def _get_video_info(self, video_url: str) -> dict[str, str | None]:
         ydl_opts = {
             "format": "bestaudio/best",
             "outtmpl": os.path.join(self.path_to_save, "%(id)s.%(ext)s"),
@@ -85,9 +85,15 @@ class ParserTranscribe:
         # print(f"Path to mp4 file: {url_info['audio_path']}\n")
         logging.info("Path to mp4 file: %s\n", url_info['audio_path'])
 
-        video_info_item = {"url": [], "title": [], "description": [], "audio_path": [], "text": []}
+        video_info_item: dict[str, list[str]] = {
+            "url": [],
+            "title": [],
+            "description": [],
+            "audio_path": [],
+            "text": [],
+        }
         for key, value in url_info.items():
-            video_info_item[key].append(value)
+            video_info_item[key].append(value if value else "")
 
         # Проверяем, что такого url в json нет
         exist_url = True
@@ -102,7 +108,7 @@ class ParserTranscribe:
 
         return video_info_item["audio_path"][0]
 
-    def _split_audio(self, file_path, output_pattern):
+    def _split_audio(self, file_path: str, output_pattern: str) -> None:
         """
         Разделяет аудиофайл на сегменты с использованием утилиты ffmpeg.
 
@@ -133,7 +139,7 @@ class ParserTranscribe:
         ]
         subprocess.run(cmd, check=False)
 
-    def _transcribe_with_whisper(self, audio_path):
+    def _transcribe_with_whisper(self, audio_path: str) -> str | None:
         """
         Транскрибирует аудиофайл с использованием модели Whisper от OpenAI.
 
@@ -163,7 +169,7 @@ class ParserTranscribe:
                     transcript = client.audio.transcriptions.create(
                         file=audio_file, model="whisper-1", response_format="text", language=["ru"]
                     )
-                return transcript
+                return transcript if transcript else ''
             except openai.APITimeoutError as e:
                 print(f"Ошибка при обращении к API (попытка {attempt + 1}): {e}")
                 if attempt < self.max_attempts - 1:  # если это не последняя попытка
@@ -174,7 +180,7 @@ class ParserTranscribe:
                     raise  # повторно вызываем исключение, чтобы сообщить о проблеме
         return None
 
-    def _get_transcribe(self, audio_path: str):
+    def _get_transcribe(self, audio_path: str) -> None:
         file_name = os.path.basename(audio_path)
 
         if not file_name.endswith((".mp3", ".wav", ".m4a")):
@@ -207,7 +213,7 @@ class ParserTranscribe:
         with open(self.json_video_info_path, "w", encoding="utf-8") as f:
             json.dump(data_list, f, ensure_ascii=False, indent=4)
 
-    def get_transcribe_video(self, url_of_video: str):
+    def get_transcribe_video(self, url_of_video: str) -> None:
         """Основная функция для полного запуска пайплайна транскрибации видео по ссылке"""
         audio_path = self._download_channel_audio_track(url_of_video)
         self._get_transcribe(audio_path)

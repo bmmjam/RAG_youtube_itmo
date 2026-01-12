@@ -16,7 +16,7 @@ clean:
 
 requirements:
 	pip install --upgrade pip
-	poetry install --sync
+	poetry sync
 	make install-pre-commit
 
 # ==============================================================================
