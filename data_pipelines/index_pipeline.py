@@ -47,7 +47,7 @@ class IndexPipeline:
     chunk_size: int = 200
     chunk_overlap: int = 50
 
-    def _get_download_urls(self, channel_url=None) -> List[str]:
+    def _get_download_urls(self, channel_url: str | None = None) -> List[str]:
         with open(self.url_file_path, "r", encoding="utf-8") as f:
             return [line.strip() for line in f if line.strip()]
 
@@ -103,9 +103,9 @@ class IndexPipeline:
         ]
 
         # Добавляем документы в индекс
-        for i, doc in enumerate(documents):
+        for ind, doc in enumerate(documents):
             # print(f"Add {i} video to index")
-            logging.info("Add %s video to index", i)
+            logging.info("Add %s video to index", ind)
             index.insert(doc)
 
         # Сохраняем индекс
@@ -133,4 +133,4 @@ if __name__ == "__main__":
         chunk_size=768,
     )
 
-    pipe.run(channel_url=None)
+    pipe.run(channel_url='')
